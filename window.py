@@ -20,6 +20,7 @@ class MainWindow:
 
     def update(self):
         self.clock.update()
+        self.code.update()
         self.window.update()
 
     def handle_Ok(self):

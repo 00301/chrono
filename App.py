@@ -13,7 +13,7 @@ class App:
         while not self.window.is_destroyed():
             self.window.update()
             self.remote.update()
-            time.sleep(0.9)
+            time.sleep(0.1)
 
     def destroy(self):
         self.remote.destroy()

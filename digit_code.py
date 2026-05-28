@@ -3,7 +3,7 @@ import tkinter as tk
 class DigitCode:
     def __init__(self, parent, x, y, cb_Ok) -> None:
         self.frame = tk.Frame(parent, padx= x, pady= y)
-        self.frame.bind("<key>", self.handle_key)
+        self.frame.bind("<Key>", self.handle_key)
         self.x = x
         self.y = y
 
@@ -19,7 +19,7 @@ class DigitCode:
         self.btn_Ok: tk.Button = tk.Button(self.frame, text= "Ok", command= self.handle_Ok)
         self.btn_Ok.pack(pady= 40, side= "top")
 
-    def handle_key(self, key: tk.Event[tk.Misc]):
+    def handle_key(self, key: tk.Event[tk.Frame]):
         if "0" <= key.keysym <= "9" :
             pass
 
@@ -32,3 +32,6 @@ class DigitCode:
     def handle_Ok(self):
         if self.get_entry() == self.code:
             self.cb_Ok()
+
+    def update(self):
+        self.frame.update()

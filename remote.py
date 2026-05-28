@@ -9,8 +9,8 @@ class Remote:
 
         self.remote = tk.Tk()
         self.remote.title("remote")
-        self.remote.geometry("100x50")
-        self.remote.minsize(100, 50)
+        self.remote.geometry("200x150")
+        self.remote.minsize(200, 150)
         self.remote.config(bg= '#000000')
         self.remote.bind("<Key>", self.handle_key)
 
@@ -31,6 +31,7 @@ class Remote:
                 self.txt_btn_play.set("Pause")
             else:
                 self.txt_btn_play.set("Play")
+            self.btn_play.update()
 
     def handle_key(self, key: tk.Event[tk.Misc]):
         if key.keysym == "Escape":
