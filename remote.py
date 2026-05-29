@@ -39,7 +39,6 @@ class Remote:
         else:
             self.txt_btn_play.set("Pause")
         self.remote.update()
-        self.remote.lift()
 
     def destroy(self):
         self.remote.destroy()
