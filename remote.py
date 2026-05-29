@@ -9,29 +9,29 @@ class Remote:
 
         self.remote = tk.Tk()
         self.remote.title("remote")
-        self.remote.geometry("200x150")
-        self.remote.minsize(200, 150)
+        self.remote.geometry("400x250")
+        self.remote.minsize(400, 250)
         self.remote.config(bg= '#000000')
         self.remote.bind("<Key>", self.handle_key)
 
-        self.btn_quit:tk.Button=tk.Button(self.remote, text= "Quit", command= self.cb_quit)
+        self.btn_quit:tk.Button = tk.Button(self.remote, text= "Quit", command= self.cb_quit)
         self.btn_quit.pack(pady= 40, side= "bottom")
 
-        self.txt_btn_play:tk.StringVar=tk.StringVar(value= "Play")
-        
-        self.btn_play:tk.Button=tk.Button(self.remote, textvariable= self.txt_btn_play, command= self.handle_play)
+        self.txt_btn_play = tk.StringVar(self.remote, value= "Play")
+        self.btn_play = tk.Button(self.remote, textvariable= self.txt_btn_play, command= self.handle_play)
         self.btn_play.pack()
         
-        self.btn_reset:tk.Button=tk.Button(self.remote, text= "Reset", command= self.cb_reset)
+        self.btn_reset:tk.Button = tk.Button(self.remote, text= "Reset", command= self.cb_reset)
         self.btn_reset.pack(pady= 0)
 
     def handle_play(self):
+        print("handle play")
         if self.cb_play():
-            if self.txt_btn_play.get() == "Play":
-                self.txt_btn_play.set("Pause")
-            else:
-                self.txt_btn_play.set("Play")
-            self.btn_play.update()
+            print("set pause")
+            self.txt_btn_play.set("Pause")
+        else:
+            print("set play")
+            self.txt_btn_play.set("Play")
 
     def handle_key(self, key: tk.Event[tk.Misc]):
         if key.keysym == "Escape":

@@ -10,14 +10,10 @@ class App:
         self.remote.update()
         
     def play(self):
-        while not self.window.is_destroyed():
+        while self.window.is_alive:
             self.window.update()
             self.remote.update()
             time.sleep(0.1)
-
-    def destroy(self):
-        self.remote.destroy()
-        self.window.destroy()
 
 if __name__=="__main__":
     App().play()

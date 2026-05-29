@@ -1,9 +1,11 @@
 from clock import Clock
 from digit_code import DigitCode
+
 import tkinter as tk
 
 class MainWindow:
     def __init__(self) -> None:
+        self.is_alive = True
         self.window = tk.Tk()
         self.window.title("chrono")
         self.window.geometry("1080x720")
@@ -16,7 +18,7 @@ class MainWindow:
         self.txt_end: tk.Label= tk.Label(self.window, text= "FIN", font= ("Helvetica", 60), bg= "#000000", fg= "#FFFFFF")
 
     def toggle_play(self):
-        self.clock.toggle_play()
+        return self.clock.toggle_play()
 
     def update(self):
         self.clock.update()
@@ -28,10 +30,9 @@ class MainWindow:
         self.txt_end.pack(anchor= "center")
 
     def reset(self):
-        self.__init__()
-
-    def is_destroyed(self):
-        return self.window.winfo_exists() == 0
+        self.txt_end.pack_forget()
+#        self.clock.reset()
 
     def destroy(self):
+        self.is_alive = False
         self.window.destroy()
