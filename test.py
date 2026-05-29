@@ -1,4 +1,4 @@
-from seven_segment import SevenSeg
+from digit_code import DigitCode
 import tkinter as tk
 
 class App:
@@ -10,11 +10,7 @@ class App:
         self.remote.bind("<Destroy>", self.quit)
         self.is_alive = True
 
-        self.txt_btn_play = tk.StringVar(value="Play")
-        self.btn_play = tk.Button(self.remote, textvariable= self.txt_btn_play, command= self.handle_play)
-        self.btn_play.pack()
-
-        self.digit = SevenSeg(self.remote, value=4)
+        self.digit = DigitCode(self.remote)
 
         self.state = False
 
@@ -27,17 +23,6 @@ class App:
     def cb_play(self):
         self.state = not self.state
         return self.state
-
-    def handle_play(self):
-        print("handle play")
-        if self.cb_play():
-            print("set pause")
-            self.txt_btn_play.set("Pause")
-            self.digit.set(6)
-        else:
-            print("set play")
-            self.txt_btn_play.set("Play")
-            self.digit.set(4)
 
 if __name__ == "__main__":
     root = App()

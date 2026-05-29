@@ -4,6 +4,7 @@ from window import MainWindow
 class Remote:
     def __init__(self, window: MainWindow) -> None:
         self.cb_play = window.toggle_play
+        self.cb_is_paused = window.is_paused
         self.cb_reset = window.reset
         self.cb_quit = window.destroy
 
@@ -25,13 +26,7 @@ class Remote:
         self.btn_reset.pack(pady= 0)
 
     def handle_play(self):
-        print("handle play")
-        if self.cb_play():
-            print("set pause")
-            self.txt_btn_play.set("Pause")
-        else:
-            print("set play")
-            self.txt_btn_play.set("Play")
+        self.cb_play()
 
     def handle_key(self, key: tk.Event[tk.Misc]):
         if key.keysym == "Escape":
@@ -39,7 +34,12 @@ class Remote:
             self.destroy()
 
     def update(self):
+        if self.cb_is_paused():
+            self.txt_btn_play.set("Play")
+        else:
+            self.txt_btn_play.set("Pause")
         self.remote.update()
+        self.remote.lift()
 
     def destroy(self):
         self.remote.destroy()
