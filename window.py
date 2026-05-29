@@ -13,7 +13,7 @@ class MainWindow:
         self.window.config(bg= '#000000')
         self.window.bind("<Destroy>", self.destroy)
 
-        self.clock = Clock(self.window, self.handle_lose, m= 0, s= 10)
+        self.clock = Clock(self.window, self.handle_lose, m= 45, s= 0)
         self.code = DigitCode(self.window, cb_Ok= self.handle_win, code= "0944")
 
         self.txt_end = tk.StringVar()
