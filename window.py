@@ -11,13 +11,20 @@ class MainWindow:
         self.window.geometry("1080x720")
         self.window.minsize(1080, 720)
         self.window.config(bg= '#000000')
-        self.window.bind("<Destroy>", self.destroy)
+        self.window.bind("<Key>", self.handle_key)
+        self.window.bind("<Destroy>", self.destroy, True)
 
         self.clock = Clock(self.window, self.handle_lose, m= 45, s= 0)
         self.code = DigitCode(self.window, cb_Ok= self.handle_win, code= "0944")
 
         self.txt_end = tk.StringVar()
         self.lbl_end: tk.Label= tk.Label(self.window, textvariable= self.txt_end, font= ("Helvetica", 200), bg= "#000000", fg= "#FFFFFF")
+
+    def handle_key(self,  key: tk.Event[tk.Misc]):
+        if key.keysym == "space":
+            self.toggle_play()
+        if key.keysym == "Escape":
+            self.destroy()
 
     def toggle_play(self):
         self.clock.toggle_play()
@@ -32,13 +39,13 @@ class MainWindow:
 
     def handle_win(self):
         self.clock.pause()
-        self.txt_end.set("Win")
-        self.lbl_end.place(anchor= "center", relx= .5, rely= .5)
+        self.txt_end.set("BRAVO !")
+        self.lbl_end.place(anchor= "center", relx= .5, rely= .5, relwidth= 1, relheight= 1)
 
     def handle_lose(self):
         self.clock.pause()
-        self.txt_end.set("Lose")
-        self.lbl_end.place(anchor= "center", relx= .5, rely= .5)
+        self.txt_end.set("VOUS AVEZ PERDU")
+        self.lbl_end.place(anchor= "center", relx= .5, rely= .5, relwidth= 1, relheight= 1)
 
     def reset(self):
         self.lbl_end.place_forget()
