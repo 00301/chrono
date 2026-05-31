@@ -7,6 +7,7 @@ class DigitCode:
         self.code = code
         self.cb_Ok = cb_Ok
         self.btn_Ok: tk.Button = tk.Button(self.frame, justify= "center", font= ("TkDefaultFont", 40), text= "Ok", command= self.handle_Ok)
+        self.btn_Ok.bind("<Key>", self.handle_key)
         self.btn_Ok.place(anchor= "ne", relx= 1, width= width / 6, height= height)
         self.entries: list[tuple[tk.StringVar, tk.Entry]] = []
         for i in range(3, -1, -1):
@@ -19,6 +20,10 @@ class DigitCode:
         for (entry, _) in self.entries:
             text += entry.get()
         return text
+
+    def handle_key(self, key: tk.Event[tk.Misc]):
+        if key.keysym == "Return":
+            self.handle_Ok()
 
     def handle_Ok(self):
         if self.cb_Ok is not None and self.get_entry() == self.code:
