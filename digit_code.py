@@ -23,6 +23,8 @@ class DigitCode:
     def handle_Ok(self):
         if self.cb_Ok is not None and self.get_entry() == self.code:
             self.cb_Ok()
+        else:
+            self.reset()
 
     def reset(self):
         for (txt, _) in self.entries:

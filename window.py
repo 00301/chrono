@@ -18,7 +18,7 @@ class MainWindow:
         self.code = DigitCode(self.window, cb_Ok= self.handle_win, code= "0944")
 
         self.txt_end = tk.StringVar()
-        self.lbl_end: tk.Label= tk.Label(self.window, textvariable= self.txt_end, font= ("Helvetica", 200), bg= "#000000", fg= "#FFFFFF")
+        self.lbl_end: tk.Label= tk.Label(self.window, textvariable= self.txt_end, font= ("Helvetica", 180), bg= "#000000", fg= "#FFFFFF")
 
     def handle_key(self,  key: tk.Event[tk.Misc]):
         if key.keysym == "space":
@@ -44,7 +44,7 @@ class MainWindow:
 
     def handle_lose(self):
         self.clock.pause()
-        self.txt_end.set("VOUS AVEZ PERDU")
+        self.txt_end.set("VOUS AVEZ\nPERDU")
         self.lbl_end.place(anchor= "center", relx= .5, rely= .5, relwidth= 1, relheight= 1)
 
     def reset(self):
